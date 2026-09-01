@@ -3,6 +3,10 @@ title: "Introduction to Elliptic Curve Cryptography"
 date: 2026-09-01 16:50:00 +0700
 categories: [Cryptography, ECC]
 tags: [ecc, elliptic-curves, ecdh, ecdsa]
+description: "Elliptic-curve arithmetic, ECDLP, ECDH/ECDSA, and classic attacks including invalid-curve, Smart's, and MOV."
+image:
+  path: /assets/posts/2026-09-01-elliptic-curve-cryptography/pic1.png
+  alt: "Elliptic curve used as a visual introduction to ECC"
 math: true
 mermaid: true
 toc: true
@@ -26,20 +30,11 @@ Examples:
 
 <div align="center" style="display:flex; justify-content:center; gap:40px;">
   <div>
-    <img
-      src="/assets/posts/2026-09-01-elliptic-curve-cryptography/pic1.png"
-      width="300"
-      alt="Elliptic curve with parameters a = -1 and b = 4"
-    ><br>
+    <img src="/assets/posts/2026-09-01-elliptic-curve-cryptography/pic1.png" width="300" alt="Elliptic curve with parameters a = -1 and b = 4"><br>
     <em>Fig 1: $(a,b)=(-1,4)$</em>
   </div>
-
   <div>
-    <img
-      src="/assets/posts/2026-09-01-elliptic-curve-cryptography/pic2.png"
-      width="300"
-      alt="Elliptic curve with parameters a = -4 and b = 2"
-    ><br>
+    <img src="/assets/posts/2026-09-01-elliptic-curve-cryptography/pic2.png" width="300" alt="Elliptic curve with parameters a = -4 and b = 2"><br>
     <em>Fig 2: $(a,b)=(-4,2)$</em>
   </div>
 </div>
@@ -278,18 +273,18 @@ That means $x_1=x_2=X$. The coordinate $x$ in the result is the shared secret be
 When both parties agree on an Elliptic Curve $E$ and a generator point $P\in E$, they communicate as follows:
 
 ```mermaid
-%%{ init : { "theme": "default", "sequence": { "mirrorActors": false } } }%%
+%%{ init : { "theme": "base", "sequence": { "mirrorActors": false } } }%%
 sequenceDiagram
     participant Alice
     participant Bob
 
-    Note over Alice,Bob: Select random private keys<br>Alice: k_a<br>Bob: k_b
-    Note over Alice,Bob: Compute public keys<br>Alice: Q_a = k_a G<br>Bob: Q_b = k_b G
+    Note over Alice,Bob: Select random private keys<br/>Alice: kA<br/>Bob: kB
+    Note over Alice,Bob: Compute public keys<br/>Alice: QA = kA · G<br/>Bob: QB = kB · G
 
-    Alice->>Bob: Q_a ∈ E
-    Bob->>Alice: Q_b ∈ E
+    Alice->>Bob: Public key QA
+    Bob->>Alice: Public key QB
 
-    Note over Alice,Bob: Compute shared secret<br>Alice: X = k_a Q_b = k_a k_b G<br>Bob: X = k_b Q_a = k_a k_b G
+    Note over Alice,Bob: Compute shared secret<br/>Alice: X = kA · QB = kA · kB · G<br/>Bob: X = kB · QA = kA · kB · G
 ```
 
 ### Elliptic Curve Digital Signature Algorithm (ECDSA)
@@ -377,16 +372,16 @@ $$
 with the same **a** and a different **b** parameter.
 
 ```mermaid
-%%{ init : { "theme": "default", "sequence": { "mirrorActors": false } } }%%
+%%{ init : { "theme": "base", "sequence": { "mirrorActors": false } } }%%
 sequenceDiagram
     participant Victim
     participant Attacker
 
-    Note over Attacker: Select a curve E' with a point Q₁ ∈ E' of<br>a small prime order |Q₁| = p₁
-    Victim->>Attacker: PK (public key)
-    Attacker->>Victim: Q₁ ∈ E' <br> (small order p₁)
-    Note over Victim: Compute the shared secret<br>DHKey = [SK]Q₁
-    Victim->>Attacker: C = E_DHKey(M)
+    Note over Attacker: Choose E' and a small-order point Q1<br/>ord(Q1) = p1
+    Victim->>Attacker: Public key PK
+    Attacker->>Victim: Invalid-curve point Q1
+    Note over Victim: Compute DHKey = [SK]Q1
+    Victim->>Attacker: Ciphertext C
 ```
 
 By observing the output, the attacker can recover the victim’s secret key modulo $p_1$, and repeat the process with different curves to fully recover the key using the Chinese Remainder Theorem.
@@ -561,7 +556,7 @@ $$
 \begin{aligned}
 f(x)+f'(x)\delta &\equiv0\pmod{p^{s+1}},\\
 \delta &\equiv\frac{-f(x)}{f'(x)}\pmod{p^{s+1}},\\
-\delta &\equiv-u\cdot f(x)\pmod{p^{s+1}}. \tag{1}
+\delta &\equiv-u\cdot f(x)\pmod{p^{s+1}} \qquad \text{(1)}
 \end{aligned}
 $$
 
