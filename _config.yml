@@ -101,7 +101,6 @@ pwa:
     deny_paths:
 
 paginate: 10
-baseurl: ""
 
 ##
 # ------------ Theme internals: normally do not modify below this line ------------
