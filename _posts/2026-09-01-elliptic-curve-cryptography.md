@@ -26,11 +26,20 @@ Examples:
 
 <div align="center" style="display:flex; justify-content:center; gap:40px;">
   <div>
-    <img src="https://hackmd.io/_uploads/SkYMbw-vlx.png" width="300"><br>
+    <img
+      src="/assets/posts/2026-09-01-elliptic-curve-cryptography/pic1.png"
+      width="300"
+      alt="Elliptic curve with parameters a = -1 and b = 4"
+    ><br>
     <em>Fig 1: $(a,b)=(-1,4)$</em>
   </div>
+
   <div>
-    <img src="https://hackmd.io/_uploads/S1SMrw-Pxg.png" width="300"><br>
+    <img
+      src="/assets/posts/2026-09-01-elliptic-curve-cryptography/pic2.png"
+      width="300"
+      alt="Elliptic curve with parameters a = -4 and b = 2"
+    ><br>
     <em>Fig 2: $(a,b)=(-4,2)$</em>
   </div>
 </div>
