@@ -14,13 +14,15 @@ description: >-
 # Leave blank until you know the final GitHub Pages URL.
 # The site still builds and deploys correctly.
 # Later you may set e.g. https://YOUR_USERNAME.github.io
-url: ""
+url: "https://lambieuu.github.io"
+
+baseurl: ""
 
 github:
   username:
 
 twitter:
-  username:
+  username: LamBieuu
 
 social:
   name: Saro
@@ -58,7 +60,7 @@ pageviews:
 theme_mode:
 
 cdn:
-avatar:
+avatar: /assets/images/avatar.jpg
 social_preview_image:
 
 toc: true
@@ -101,6 +103,7 @@ pwa:
 paginate: 10
 baseurl: ""
 
+##
 # ------------ Theme internals: normally do not modify below this line ------------
 
 kramdown:
