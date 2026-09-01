@@ -818,7 +818,7 @@ Before solving for $k$, we need to know coordinates of $P'$ and $Q'$ which is fi
 
 Let $E$ be an elliptic curve defined over a finite field $\mathbb F_q$.
 
-Let $n$ be a large prime that divides the number of rational points on the curve, denoted as $#E(\mathbb F_q)$.
+Let $n$ be a large prime that divides the number of rational points on the curve, denoted as \left|E(\mathbb{F}_q)\right|.
 
 A **Pairing** (either a Weil or Tate Pairing) is a bilinear map:
 
