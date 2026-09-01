@@ -19,16 +19,17 @@ url: "https://lambieuu.github.io"
 baseurl: ""
 
 github:
-  username:
+  username: LamBieuu
 
 twitter:
-  username: LamBieuu
+  username:
 
 social:
   name: Saro
-  email:
+  email: bieutranlam1704@gmail.com
   fediverse_handle:
-  links: []
+  links:
+    - https://github.com/LamBieuu
 
 webmaster_verifications:
   google:
