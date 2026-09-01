@@ -3,7 +3,7 @@ title: "Introduction to Elliptic Curve Cryptography"
 date: 2026-09-01 16:50:00 +0700
 categories: [Cryptography, ECC]
 tags: [ecc, elliptic-curves, ecdh, ecdsa]
-description: "Elliptic-curve arithmetic, ECDLP, ECDH/ECDSA, and classic attacks including invalid-curve, Smart's, and MOV."
+description: "Elliptic-curve arithmetic, ECDLP, ECDH/ECDSA, and classic attacks."
 image:
   path: /assets/posts/2026-09-01-elliptic-curve-cryptography/pic1.png
   alt: "Elliptic curve used as a visual introduction to ECC"
@@ -818,7 +818,7 @@ Before solving for $k$, we need to know coordinates of $P'$ and $Q'$ which is fi
 
 Let $E$ be an elliptic curve defined over a finite field $\mathbb F_q$.
 
-Let $n$ be a large prime that divides the number of rational points on the curve, denoted as $\#E(\mathbb F_q)$.
+Let $n$ be a large prime that divides the number of rational points on the curve, denoted as $#E(\mathbb F_q)$.
 
 A **Pairing** (either a Weil or Tate Pairing) is a bilinear map:
 
