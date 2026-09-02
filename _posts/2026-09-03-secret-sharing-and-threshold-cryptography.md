@@ -3,25 +3,15 @@ title: "Secret Sharing and Threshold Cryptography: From Shamir to T-out-of-N"
 date: 2026-09-03 02:32:00 +0700
 categories: [Cryptography, Secret Sharing]
 tags: [secret-sharing, shamir, threshold-cryptography, lagrange-interpolation]
-description: "A learning note on secret sharing, Shamir's construction, Lagrange interpolation, and how these ideas lead into threshold cryptography."
+description: "A learning note on secret sharing, Shamir's construction, Lagrange interpolation."
 math: true
 mermaid: true
 toc: true
 ---
 
-## Introduction
+## Motivation
 
-Suppose a secret is too important to be entrusted to only one person.
-
-If one person holds the entire secret key, that person becomes a **single point of failure**. If the key is leaked, the system is compromised. If the key is lost, the protected data may become unrecoverable. If the key holder becomes unavailable, nobody else can use the secret.
-
-A natural idea is therefore to split the secret among several participants.
-
-But simply cutting a secret into pieces is not enough. What we really want is a system where:
-
-- any sufficiently large group can recover the secret;
-- any smaller group learns nothing about it;
-- no single participant needs to hold the whole secret.
+Say, if a group owns a valuable vault, how would you like it to be locked? If one person holds the entire key, that person becomes a **single point of failure**. If the key is leaked, the system is compromised. If the key is lost, the vault may become unrecoverable. If the key holder becomes unavailable, nobody else can use the secret. Or, maybe the first thing came to your mind, the key holder becomes greedy and take the vault for himself. A natural idea is therefore to split the key among several participants. Thus, a scheme is developed called secret sharing scheme.
 
 Mike Rosulek gives a compact definition in *The Joy of Cryptography*:
 
@@ -68,75 +58,6 @@ $$
 $$
 
 The secret is hidden at one point of a random polynomial, and every participant receives another point on that polynomial.
-
----
-
-## Motivation
-
-Why do we need secret sharing in cryptography?
-
-Imagine that a company protects a highly sensitive signing key on one server.
-
-```text
-Private key
-    |
-    v
-One server
-    |
-    +---- compromised ----> game over
-```
-
-Making several full copies of the key improves availability, but makes security worse: compromising **any one copy** reveals the entire key.
-
-Secret sharing gives us a better tradeoff.
-
-Suppose the secret is distributed among five participants, and at least three are required to recover it:
-
-```mermaid
-flowchart TD
-    M["Secret μ"] --> S1["Share σ₁"]
-    M --> S2["Share σ₂"]
-    M --> S3["Share σ₃"]
-    M --> S4["Share σ₄"]
-    M --> S5["Share σ₅"]
-
-    S1 --> R["Any 3 shares"]
-    S2 --> R
-    S3 --> R
-
-    R --> O["Recover μ"]
-```
-
-This is a $3$-out-of-$5$ scheme:
-
-$$
-T=3,\qquad N=5.
-$$
-
-It should satisfy two fundamental properties.
-
-### Correctness
-
-Any $T$ valid shares reconstruct the secret:
-
-$$
-\operatorname{Reconstruct}
-(\sigma_{i_1},\ldots,\sigma_{i_T})
-=
-\mu.
-$$
-
-More generally, every authorized subset of at least $T$ participants should be able to recover the secret.
-
-### Privacy
-
-Any collection of fewer than $T$ shares should reveal no information about $\mu$.
-
-In a perfect secret-sharing scheme, this guarantee is **information-theoretic**: it does not depend on the adversary being computationally bounded.
-
-Boneh and Shoup formalize this by requiring that the distribution of any $T-1$ shares is identical for every possible secret.[^boneh-shoup]
-
-That is much stronger than simply saying that the adversary cannot efficiently calculate the secret.
 
 ---
 
