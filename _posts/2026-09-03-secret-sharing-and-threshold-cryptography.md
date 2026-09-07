@@ -4,6 +4,9 @@ date: 2026-09-03 02:32:00 +0700
 categories: [Cryptography, Secret Sharing]
 tags: [secret-sharing, shamir, threshold-cryptography, lagrange-interpolation]
 description: "A learning note on secret sharing, Shamir's construction, Lagrange interpolation."
+image:
+  path: /assets/posts/2026-09-03-secret-sharing-and-threshold-cryptography/pic1.jpg
+  alt: "I'm a seal hehe"
 math: true
 mermaid: true
 toc: true

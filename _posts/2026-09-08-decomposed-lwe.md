@@ -6,7 +6,7 @@ tags: [lwe, decomposed-lwe, lattices, gadget-matrix, post-quantum]
 description: "An intuitive and formal introduction to Decomposed LWE, from gadget decomposition to the structured distinguishing assumption."
 image:
   path: /assets/posts/2026-09-08-decomposed-lwe/pic1.jpg
-  alt: "Visual intuition for gadget decomposition and Decomposed LWE"
+  alt: "I'm a seal hehe"
 math: true
 mermaid: true
 toc: true
