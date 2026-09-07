@@ -14,8 +14,7 @@ toc: true
 
 ## Preliminaries
 
-If you are reading this, I'm assuming you had basic knowledge about LWE and its properties. If not, try to read from this book https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf. A very informative and comprehensive introduction to LWE of Alfred Menezes.
-
+If you are reading this, I'm assuming you have basic knowledge about LWE and its properties. If not, try reading Alfred Menezes' [Introduction to Lattice-Based Cryptography](https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf), which provides a very informative and comprehensive introduction to LWE.
 
 ## Theory
 
@@ -25,41 +24,41 @@ Before giving the formal **Decomposed LWE assumption**, it is useful to understa
 
 Start from a standard matrix-form LWE relation
 
-\[
+$$
 b = As + e \pmod q,
-\]
+$$
 
 where
 
-\[
+$$
 A \in \mathbb{Z}_q^{m\times n}, \qquad
 s \in \mathbb{Z}_q^n, \qquad
 e \in \mathbb{Z}^m.
-\]
+$$
 
-The entries of \(s\) live in \(\mathbb{Z}_q\), so an entry may be much larger than a binary digit.
+The entries of $s$ live in $\mathbb{Z}_q$, so an entry may be much larger than a binary digit.
 
-A common lattice technique is to represent each coefficient using small base-\(B\) digits.
+A common lattice technique is to represent each coefficient using small base-$B$ digits.
 
-For one coefficient \(x\),
+For one coefficient $x$,
 
-\[
+$$
 x = \sum_{k=0}^{d-1} x_k B^k,
 \qquad
 x_k \in \{0,\ldots,B-1\}.
-\]
+$$
 
-For \(B=2\), the digits are simply bits.
+For $B=2$, the digits are simply bits.
 
 The important trade-off is
 
-\[
+$$
 \boxed{
 \text{short vector with larger coefficients}
 \quad\longrightarrow\quad
 \text{longer vector with small bounded coefficients}.
 }
-\]
+$$
 
 This gadget intuition is extremely useful for understanding the notation that follows.
 
@@ -72,13 +71,13 @@ This gadget intuition is extremely useful for understanding the notation that fo
 
 Let
 
-\[
+$$
 q=17,\qquad B=2,
-\]
+$$
 
 and choose
 
-\[
+$$
 A=
 \begin{bmatrix}
 3&4\\
@@ -96,17 +95,17 @@ e=
 1\\
 -1
 \end{bmatrix}.
-\]
+$$
 
 The ordinary LWE-style computation is
 
-\[
+$$
 b=As+e\pmod{17}.
-\]
+$$
 
 First compute
 
-\[
+$$
 As=
 \begin{bmatrix}
 3&4\\
@@ -121,11 +120,11 @@ As=
 27\\
 25
 \end{bmatrix}.
-\]
+$$
 
 Therefore,
 
-\[
+$$
 b=
 \begin{bmatrix}
 27\\
@@ -149,25 +148,25 @@ b=
 \end{bmatrix}
 }
 \pmod{17}.
-\]
+$$
 
 ### 2.1 Decompose the secret
 
 For this **specific toy secret**, three binary digits are enough:
 
-\[
+$$
 5=(101)_2=1\cdot 2^0+0\cdot2^1+1\cdot2^2,
-\]
+$$
 
 and
 
-\[
+$$
 3=(011)_2=1\cdot 2^0+1\cdot2^1+0\cdot2^2.
-\]
+$$
 
 Thus
 
-\[
+$$
 \widetilde{s}
 =
 \begin{bmatrix}
@@ -178,28 +177,28 @@ Thus
 1\\
 0
 \end{bmatrix}.
-\]
+$$
 
 Define the toy gadget matrix
 
-\[
+$$
 G_{\text{toy}}
 =
 \begin{bmatrix}
 1&2&4&0&0&0\\
 0&0&0&1&2&4
 \end{bmatrix}.
-\]
+$$
 
 Then
 
-\[
+$$
 s = G_{\text{toy}}\widetilde{s}.
-\]
+$$
 
 Indeed,
 
-\[
+$$
 G_{\text{toy}}
 \widetilde{s}
 =
@@ -214,24 +213,24 @@ G_{\text{toy}}
 \begin{bmatrix}
 5\\3
 \end{bmatrix}.
-\]
+$$
 
 The secret dimension has changed from
 
-\[
+$$
 2 \longrightarrow 6,
-\]
+$$
 
-but every coordinate of \(\widetilde{s}\) is only \(0\) or \(1\).
+but every coordinate of $\widetilde{s}$ is only $0$ or $1$.
 
-> For a gadget intended to represent **every** element of \(\mathbb{Z}_{17}\), we would normally take
+> For a gadget intended to represent **every** element of $\mathbb{Z}_{17}$, we would normally take
 >
 > \[
 > d=\lceil\log_2 17\rceil=5,
 > \]
 >
-> not \(3\).  
-> We use \(d=3\) here only because the selected toy values \(5\) and \(3\) fit in three bits.
+> not $3$.  
+> We use $d=3$ here only because the selected toy values $5$ and $3$ fit in three bits.
 
 ---
 
@@ -239,26 +238,26 @@ but every coordinate of \(\widetilde{s}\) is only \(0\) or \(1\).
 
 Substitute
 
-\[
+$$
 s=G_{\text{toy}}\widetilde{s}
-\]
+$$
 
 into
 
-\[
+$$
 b=As+e.
-\]
+$$
 
 Then
 
-\[
+$$
 b=A(G_{\text{toy}}\widetilde{s})+e
 =(AG_{\text{toy}})\widetilde{s}+e.
-\]
+$$
 
 Compute
 
-\[
+$$
 AG_{\text{toy}}
 =
 \begin{bmatrix}
@@ -269,22 +268,22 @@ AG_{\text{toy}}
 1&2&4&0&0&0\\
 0&0&0&1&2&4
 \end{bmatrix}.
-\]
+$$
 
 Hence
 
-\[
+$$
 AG_{\text{toy}}
 =
 \begin{bmatrix}
 3&6&12&4&8&16\\
 2&4&8&5&10&20
 \end{bmatrix}.
-\]
+$$
 
-Modulo \(17\),
+Modulo $17$,
 
-\[
+$$
 \widetilde{A}
 =
 AG_{\text{toy}}
@@ -294,19 +293,19 @@ AG_{\text{toy}}
 3&6&12&4&8&16\\
 2&4&8&5&10&3
 \end{bmatrix}.
-\]
+$$
 
 Now,
 
-\[
+$$
 b=
 \widetilde{A}\widetilde{s}+e
 \pmod{17}.
-\]
+$$
 
 Therefore,
 
-\[
+$$
 \begin{aligned}
 b
 &=
@@ -334,7 +333,7 @@ b
 }
 \pmod{17}.
 \end{aligned}
-\]
+$$
 
 Nothing about the represented value changed.
 
@@ -357,29 +356,29 @@ flowchart LR
 
 The dimensional trade-off is
 
-\[
+$$
 (2\times2)(2\times1)
 \quad\longrightarrow\quad
 (2\times6)(6\times1).
-\]
+$$
 
-More generally, if every secret coefficient uses \(d\) digits, then
+More generally, if every secret coefficient uses $d$ digits, then
 
-\[
+$$
 s\in\mathbb{Z}_q^n
 \quad\longrightarrow\quad
 \widetilde{s}\in\{0,\ldots,B-1\}^{nd}.
-\]
+$$
 
-The corresponding public matrix becomes wider by approximately a factor of \(d\).
+The corresponding public matrix becomes wider by approximately a factor of $d$.
 
 This is why quantities such as
 
-\[
+$$
 \log q,\qquad n\log q,\qquad
 \text{dimension},\qquad
 \text{coefficient bounds}
-\]
+$$
 
 appear so often in lattice constructions.
 
@@ -389,43 +388,43 @@ appear so often in lattice constructions.
 
 The Lattice Assumption Zoo recalls the gadget matrix in the form[^laz]
 
-\[
+$$
 G_n = I_n\otimes g^T,
-\]
+$$
 
-where, for a base \(B\),
+where, for a base $B$,
 
-\[
+$$
 g^T=
 \begin{bmatrix}
 1&B&B^2&\cdots&B^{d-1}
 \end{bmatrix},
-\]
+$$
 
-with \(d\) chosen large enough to cover the modulus, typically
+with $d$ chosen large enough to cover the modulus, typically
 
-\[
+$$
 d=\lceil\log_B q\rceil.
-\]
+$$
 
 For binary decomposition,
 
-\[
+$$
 B=2
-\]
+$$
 
 and therefore
 
-\[
+$$
 g^T=
 \begin{bmatrix}
 1&2&4&8&\cdots
 \end{bmatrix}.
-\]
+$$
 
-For \(n=2\),
+For $n=2$,
 
-\[
+$$
 G_2
 =
 I_2\otimes g^T
@@ -434,18 +433,18 @@ I_2\otimes g^T
 g^T&0\\
 0&g^T
 \end{bmatrix}.
-\]
+$$
 
 The matrix in our toy example,
 
-\[
+$$
 G_{\text{toy}}
 =
 \begin{bmatrix}
 1&2&4&0&0&0\\
 0&0&0&1&2&4
 \end{bmatrix},
-\]
+$$
 
 is exactly this block-gadget pattern, truncated to three powers for easier arithmetic.
 
@@ -459,107 +458,107 @@ The formal **Decomposed LWE** assumption was proposed by Abram, Malavolta, and R
 
 It is not merely the statement
 
-\[
+$$
 s=G\widetilde{s}.
-\]
+$$
 
 Instead, it asks whether LWE samples remain pseudorandom when their public matrices have a particular structured form.
 
 According to the Lattice Assumption Zoo, choose
 
-\[
+$$
 W_i \leftarrow \mathbb{Z}_q^{n\times m}
-\]
+$$
 
 uniformly and choose short matrices
 
-\[
+$$
 B_j \leftarrow D_{\sigma_B}^{m\times\widehat m}.
-\]
+$$
 
 For every
 
-\[
+$$
 i,j\in[\ell],
-\]
+$$
 
 construct
 
-\[
+$$
 \boxed{
 A_{i,j}=W_iB_j+\delta_{i,j}G
 }
-\]
+$$
 
 where
 
-\[
+$$
 \delta_{i,j}
 =
 \begin{cases}
 1,&i=j,\\
 0,&i\neq j.
 \end{cases}
-\]
+$$
 
 Thus the gadget term appears only on the diagonal.
 
 Choose one shared secret
 
-\[
+$$
 s\leftarrow\mathbb{Z}_q^n
-\]
+$$
 
 and small errors
 
-\[
+$$
 e_{i,j}\leftarrow D_{\sigma_e}^{\widehat m}.
-\]
+$$
 
 The LWE-style outputs are
 
-\[
+$$
 \boxed{
 b_{i,j}
 =
 s^T A_{i,j}+e_{i,j}
 \pmod q.
 }
-\]
+$$
 
 The assumption says, informally, that an efficient adversary should not be able to distinguish these structured noisy outputs from uniformly random vectors of the same dimension.[^laz]
 
 ---
 
-## 5. Visualizing the formal structure for \(\ell=2\)
+## 5. Visualizing the formal structure for $\ell=2$
 
 The notation becomes much easier when we set
 
-\[
+$$
 \ell=2.
-\]
+$$
 
 There are four structured matrices:
 
-\[
+$$
 A_{1,1}=W_1B_1+G,
-\]
+$$
 
-\[
+$$
 A_{1,2}=W_1B_2,
-\]
+$$
 
-\[
+$$
 A_{2,1}=W_2B_1,
-\]
+$$
 
-\[
+$$
 A_{2,2}=W_2B_2+G.
-\]
+$$
 
 So the structure is
 
-\[
+$$
 \boxed{
 \begin{array}{c|cc}
  & B_1 & B_2\\
@@ -568,13 +567,13 @@ W_1 & W_1B_1+G & W_1B_2\\
 W_2 & W_2B_1 & W_2B_2+G
 \end{array}
 }
-\]
+$$
 
 and every block produces
 
-\[
+$$
 b_{i,j}=s^TA_{i,j}+e_{i,j}.
-\]
+$$
 
 ```mermaid
 flowchart TB
@@ -612,21 +611,21 @@ A useful way to remember LWE assumptions is as a game.
 
 The adversary receives public structure such as
 
-\[
+$$
 W_i,\quad B_j
-\]
+$$
 
 together with
 
-\[
+$$
 b_{i,j}=s^TA_{i,j}+e_{i,j}.
-\]
+$$
 
-The same hidden secret \(s\) participates across the structured samples.
+The same hidden secret $s$ participates across the structured samples.
 
 ### Random world
 
-The public matrices are distributed as required by the assumption, but the corresponding \(b_{i,j}\) values are replaced by uniformly random vectors of matching dimension.
+The public matrices are distributed as required by the assumption, but the corresponding $b_{i,j}$ values are replaced by uniformly random vectors of matching dimension.
 
 The adversary must guess whether it is seeing the real world or the random world.
 
@@ -642,17 +641,17 @@ There are two related ideas that should not be conflated.
 
 We can represent a value using many small digits:
 
-\[
+$$
 x
 \longleftrightarrow
 (x_0,\ldots,x_{d-1}),
-\]
+$$
 
 with
 
-\[
+$$
 x=\sum_k x_k B^k.
-\]
+$$
 
 This explains why gadget vectors contain powers of the base.
 
@@ -660,23 +659,23 @@ This explains why gadget vectors contain powers of the base.
 
 The formal assumption instead exposes LWE samples whose public matrices are built from pieces
 
-\[
+$$
 W_iB_j
-\]
+$$
 
 plus the diagonal gadget correction
 
-\[
+$$
 \delta_{i,j}G.
-\]
+$$
 
 So the name refers to a **structured decomposition of the LWE matrix/sample system**, not simply to replacing the secret with its bit representation.
 
 The gadget-decomposition example remains useful because it gives the right intuition for
 
-\[
+$$
 G
-\]
+$$
 
 and for the dimension-versus-coefficient trade-off.
 
@@ -704,19 +703,19 @@ The challenge is to expose useful structure without making the hidden LWE secret
 
 ## 9. Relation to Succinct LWE
 
-Abram, Malavolta, and Roy show a reduction from the hardness of \(\ell\)-Succinct LWE to Decomposed LWE for an appropriate parameter regime.[^amr][^laz]
+Abram, Malavolta, and Roy show a reduction from the hardness of $\ell$-Succinct LWE to Decomposed LWE for an appropriate parameter regime.[^amr][^laz]
 
 The Lattice Assumption Zoo summarizes a setting with
 
-\[
+$$
 \widehat m=n\log q,
-\]
+$$
 
-prime \(q\), polynomial \(\ell\),
+prime $q$, polynomial $\ell$,
 
-\[
+$$
 m\ge 2\widehat m,
-\]
+$$
 
 and an appropriate polynomial noise ratio.[^laz]
 
@@ -747,8 +746,8 @@ The structured public matrices are part of the security assumption.
 The Lattice Assumption Zoo records several open directions, including:[^laz]
 
 - obtaining stronger concrete hardness results for some parameter regimes,
-- determining whether attacks can exploit the \(\ell\)-structured form more efficiently than generic SIS/LWE attacks,
-- establishing hardness with respect to the structured \(A\) matrix from a worst-case lattice problem.
+- determining whether attacks can exploit the $\ell$-structured form more efficiently than generic SIS/LWE attacks,
+- establishing hardness with respect to the structured $A$ matrix from a worst-case lattice problem.
 
 So when using Decomposed LWE in a research project, the exact assumption and parameter regime should always be stated explicitly.
 
@@ -760,56 +759,56 @@ So when using Decomposed LWE in a research project, the exact assumption and par
 
 If you only remember the warm-up intuition, remember
 
-\[
+$$
 \boxed{
 \text{dimension increases}
 \quad\text{while}\quad
 \text{individual digit coefficients become small}.
 }
-\]
+$$
 
 For example,
 
-\[
+$$
 s=
 \begin{bmatrix}
 5\\3
 \end{bmatrix}
-\]
+$$
 
 can be represented by
 
-\[
+$$
 \widetilde{s}
 =
 \begin{bmatrix}
 1\\0\\1\\1\\1\\0
 \end{bmatrix}.
-\]
+$$
 
 Then
 
-\[
+$$
 As
 =
 AG_{\text{toy}}\widetilde{s}.
-\]
+$$
 
 But if you are discussing the **formal security assumption**, remember the equation
 
-\[
+$$
 \boxed{
 A_{i,j}=W_iB_j+\delta_{i,j}G
 }
-\]
+$$
 
 and the corresponding samples
 
-\[
+$$
 \boxed{
 b_{i,j}=s^TA_{i,j}+e_{i,j}.
 }
-\]
+$$
 
 These are two different levels of understanding:
 
@@ -824,20 +823,20 @@ A small implementation is useful for learning, but there is no need to pretend t
 
 A good educational repository should contain:
 
-1. base-\(B\) decomposition of a vector;
+1. base-$B$ decomposition of a vector;
 2. gadget-matrix construction;
-3. reconstruction \(s=G\widetilde{s}\);
+3. reconstruction $s=G\widetilde{s}$;
 4. verification that
 
-   \[
+   $$
    As+e=(AG)\widetilde{s}+e\pmod q;
-   \]
+   $$
 
 5. a toy constructor for
 
-   \[
+   $$
    A_{i,j}=W_iB_j+\delta_{i,j}G.
-   \]
+   $$
 
 The accompanying demo repository for this post does exactly that.
 
@@ -849,23 +848,23 @@ The path from ordinary LWE to Decomposed LWE is easiest to learn in two stages.
 
 First, gadget decomposition teaches us how a vector with larger coefficients can be represented by a longer vector of small digits:
 
-\[
+$$
 s=G\widetilde{s}.
-\]
+$$
 
 This creates a useful trade-off between dimension and coefficient size.
 
 Second, the formal Decomposed LWE assumption introduces structured public matrices
 
-\[
+$$
 A_{i,j}=W_iB_j+\delta_{i,j}G
-\]
+$$
 
 and assumes that the resulting noisy linear samples
 
-\[
+$$
 s^TA_{i,j}+e_{i,j}
-\]
+$$
 
 remain computationally indistinguishable from random.
 
