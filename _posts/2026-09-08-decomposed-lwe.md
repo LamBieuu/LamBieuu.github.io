@@ -5,7 +5,7 @@ categories: [Cryptography, Lattices]
 tags: [lwe, decomposed-lwe, lattices, gadget-matrix, post-quantum]
 description: "An intuitive and formal introduction to Decomposed LWE, from gadget decomposition to the structured distinguishing assumption."
 image:
-  path: /assets/posts/2026-09-08-decomposed-lwe/pic1.png
+  path: /assets/posts/2026-09-08-decomposed-lwe/pic1.jpg
   alt: "Visual intuition for gadget decomposition and Decomposed LWE"
 math: true
 mermaid: true
@@ -16,6 +16,11 @@ toc: true
 > Read my **[Basic LWE introduction](/posts/learning-with-errors/)** first if needed.
 >
 > <!-- Replace /posts/learning-with-errors/ with the URL of your own Basic LWE post. -->
+
+## Preliminaries
+
+If you are reading this, I'm assuming you had basic knowledge about LWE and its properties. If not, try to read from this book https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf. A very informative and comprehensive introduction to LWE of Alfred Menezes.
+
 
 ## Theory
 
