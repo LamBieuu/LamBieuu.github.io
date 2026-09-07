@@ -12,11 +12,6 @@ mermaid: true
 toc: true
 ---
 
-> **Prerequisite — Basic LWE:** this post assumes that you already know the basic Learning With Errors problem and the equation \(b = As + e \pmod q\).  
-> Read my **[Basic LWE introduction](/posts/learning-with-errors/)** first if needed.
->
-> <!-- Replace /posts/learning-with-errors/ with the URL of your own Basic LWE post. -->
-
 ## Preliminaries
 
 If you are reading this, I'm assuming you had basic knowledge about LWE and its properties. If not, try to read from this book https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf. A very informative and comprehensive introduction to LWE of Alfred Menezes.
