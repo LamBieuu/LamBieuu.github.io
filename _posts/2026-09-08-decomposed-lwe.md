@@ -225,9 +225,10 @@ but every coordinate of $\widetilde{s}$ is only $0$ or $1$.
 
 > For a gadget intended to represent **every** element of $\mathbb{Z}_{17}$, we would normally take
 >
-> \[
-> d=\lceil\log_2 17\rceil=5,
-> \]
+$$ \[
+ d=\lceil\log_2 17\rceil=5,
+ \]
+$$
 >
 > not $3$.  
 > We use $d=3$ here only because the selected toy values $5$ and $3$ fit in three bits.
