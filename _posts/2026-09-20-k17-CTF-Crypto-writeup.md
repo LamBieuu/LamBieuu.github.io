@@ -1,7 +1,7 @@
 ---
-title: "K17 CTF non-AI division"
+title: "K17 CTF Non-AI Division Crypto writeup"
 date: 2026-09-24 10:30:00 +0700
-categories: [CTF, Cryptography]
+categories: [CTF, Cryptography, writeups]
 tags: [ctf, cryptography, blowfish, cbc, xor, gf2, gaussian-elimination]
 description: "A CTF writeup on abusing per-block signatures and CBC encryption/decryption oracles to forge an admin JSON message."
 math: true
