@@ -1,5 +1,5 @@
 ---
-title: "What Is Functional Encryption? Registered FE and Its Security"
+title: "Functional Encryption"
 date: 2026-10-05 00:00:00 +0700
 categories: [Cryptography, Encryption]
 tags: [functional-encryption, registered-fe, bounded-collusion, security-models]
