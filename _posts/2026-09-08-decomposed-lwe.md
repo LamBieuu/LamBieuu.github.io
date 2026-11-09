@@ -14,7 +14,7 @@ toc: true
 
 ## Preliminaries
 
-If you are reading this, I'm assuming you have basic knowledge about LWE and its properties. If not, try reading Alfred Menezes' [Introduction to Lattice-Based Cryptography](https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf), which provides a very informative and comprehensive introduction to LWE.
+This post assumes some familiarity with ordinary LWE. My [introduction to LWE and noise]({% post_url 2026-10-10-learning-with-errors %}) works through the noisy equations, encryption, and decoding first. For a longer treatment, Alfred Menezes' [Introduction to Lattice-Based Cryptography](https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf) is another useful reference.
 
 ## Theory
 

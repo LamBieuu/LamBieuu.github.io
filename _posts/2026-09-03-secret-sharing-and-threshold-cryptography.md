@@ -786,7 +786,9 @@ This is exactly the kind of obstacle that appears when trying to combine thresho
 
 The next step in this learning path is therefore:
 
-> **When Shamir Meets LWE: Why Noisy Shares Break Threshold Reconstruction**
+> [**When Shamir Meets LWE: Why Small Errors Become a Problem**]({% post_url 2026-10-12-when-shamir-meets-lwe %})
+
+If LWE is new to you, start with [Learning With Errors: Why the Noise Matters]({% post_url 2026-10-10-learning-with-errors %}), which introduces the encryption and rounding arithmetic used there.
 
 ---
 
